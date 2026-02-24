@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sign in to The Prompt Generation — save, sync, and access your favourite prompts.">
+  <meta name="theme-color" content="#7C3AED">
+  <title>Sign In — The Prompt Generation</title>
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link rel="stylesheet" href="../css/animations.css">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/auth.css">
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════
+       NAVIGATION
+  ══════════════════════════════════════════════════════════ -->
+  <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="navbar__inner">
+      <a href="../index.html" class="navbar__logo" aria-label="The Prompt Generation — Home">
+        <div class="navbar__logo-icon" aria-hidden="true">⚡</div>
+        <span class="navbar__logo-text">The <span class="accent">Prompt</span> Generation</span>
+      </a>
+
+      <ul class="navbar__nav" role="list">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="categories.html">Prompts</a></li>
+        <li><a href="#">Community</a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+
+      <div class="navbar__actions">
+        <a href="signin.html" id="navSignInBtn" class="btn btn--secondary btn--sm" style="display:none;">Sign In</a>
+        <a href="categories.html" class="btn btn--primary btn--sm">Browse Prompts →</a>
+        <button class="navbar__hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu" role="menu">
+    <a href="../index.html" role="menuitem">🏠 Home</a>
+    <a href="categories.html" role="menuitem">⚡ Prompts</a>
+    <a href="account.html" role="menuitem">👤 My Account</a>
+    <div style="height:1px;background:var(--border-2);margin:8px 0;"></div>
+    <a href="categories.html" class="btn btn--primary" role="menuitem" style="text-align:center;">Browse Prompts →</a>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       AUTH CARD
+  ══════════════════════════════════════════════════════════ -->
+  <main class="auth-page" aria-label="Sign in">
+    <div class="auth-card" role="main">
+
+      <!-- Logo -->
+      <div class="auth-logo" aria-hidden="true">⚡</div>
+
+      <!-- Heading (swapped by tab JS) -->
+      <div class="auth-heading" id="authHeading">
+        <h1>Welcome back</h1>
+        <p>Sign in to save and sync your prompts</p>
+      </div>
+
+      <!-- ── Google Sign-In ── -->
+      <button class="btn-google" id="googleBtn" type="button" aria-label="Sign in with Google">
+        <svg class="btn-google__icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+          <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+          <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+          <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+        </svg>
+        Continue with Google
+      </button>
+
+      <!-- ── OR Divider ── -->
+      <div class="auth-divider">or continue with email</div>
+
+      <!-- ── Sign In / Register Tabs ── -->
+      <div class="auth-tabs" role="tablist" aria-label="Authentication method">
+        <button class="auth-tab active" data-tab="signin"   role="tab" aria-selected="true"  aria-controls="signinForm">Sign In</button>
+        <button class="auth-tab"        data-tab="register" role="tab" aria-selected="false" aria-controls="registerForm">Create Account</button>
+      </div>
+
+      <!-- ── Sign In Form ── -->
+      <form class="auth-form" id="signinForm" novalidate aria-label="Sign in with email">
+        <div class="auth-form-group">
+          <label class="auth-label" for="siEmail">Email address</label>
+          <input class="auth-input" type="email" id="siEmail"
+                 placeholder="you@example.com"
+                 autocomplete="email" required>
+        </div>
+
+        <div class="auth-form-group">
+          <label class="auth-label" for="siPassword">Password</label>
+          <input class="auth-input" type="password" id="siPassword"
+                 placeholder="••••••••"
+                 autocomplete="current-password" required>
+          <a href="#" class="auth-forgot" id="forgotLink">Forgot password?</a>
+        </div>
+
+        <button type="submit" class="btn btn--primary auth-submit">
+          Sign In
+        </button>
+      </form>
+
+      <!-- ── Register Form ── -->
+      <form class="auth-form" id="registerForm" style="display:none;" novalidate aria-label="Create an account">
+        <div class="auth-form-group">
+          <label class="auth-label" for="regName">Full name</label>
+          <input class="auth-input" type="text" id="regName"
+                 placeholder="Your name"
+                 autocomplete="name" required>
+        </div>
+
+        <div class="auth-form-group">
+          <label class="auth-label" for="regEmail">Email address</label>
+          <input class="auth-input" type="email" id="regEmail"
+                 placeholder="you@example.com"
+                 autocomplete="email" required>
+        </div>
+
+        <div class="auth-form-group">
+          <label class="auth-label" for="regPassword">
+            Password
+            <span style="color:var(--text-4);font-weight:400;text-transform:none;letter-spacing:0;">(min. 6 chars)</span>
+          </label>
+          <input class="auth-input" type="password" id="regPassword"
+                 placeholder="••••••••"
+                 autocomplete="new-password" required minlength="6">
+        </div>
+
+        <button type="submit" class="btn btn--primary auth-submit">
+          Create Account
+        </button>
+      </form>
+
+      <!-- ── Feedback banner (error / success) ── -->
+      <div id="authFeedback" role="alert" aria-live="polite" style="display:none;"></div>
+
+      <!-- ── Back to browse ── -->
+      <p class="auth-footer-link">
+        Just browsing? <a href="categories.html">Explore prompts →</a>
+      </p>
+
+    </div>
+  </main>
+
+  <!-- ═══════════════════════════════════════════════════════
+       Firebase SDK (compat build — global firebase object)
+  ══════════════════════════════════════════════════════════ -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+  <script src="../js/auth/firebase-config.js"></script>
+  <script src="../js/auth/auth.js"></script>
+  <script src="../js/auth/likes.js"></script>
+  <script src="../js/main.js"></script>
+
+  <script>
+    'use strict';
+
+    /* ── Redirect if already signed in ─────────────────────── */
+    if (window.TPG_AUTH) {
+      window.TPG_AUTH.onAuthStateChanged(function (user) {
+        if (user) window.location.replace('account.html');
+      });
+    }
+
+    /* ── Feedback helper ────────────────────────────────────── */
+    function showFeedback(msg, type) {
+      const el = document.getElementById('authFeedback');
+      if (!msg) { el.style.display = 'none'; return; }
+      el.className = type === 'success' ? 'auth-success' : 'auth-error';
+      el.textContent = (type === 'success' ? '✅  ' : '⚠️  ') + msg;
+      el.style.display = 'flex';
+    }
+
+    /* ── Google sign-in ─────────────────────────────────────── */
+    const googleBtn = document.getElementById('googleBtn');
+    const GOOGLE_INNER = googleBtn.innerHTML;   // save for reset
+
+    googleBtn.addEventListener('click', async function () {
+      googleBtn.disabled    = true;
+      googleBtn.textContent = 'Connecting to Google…';
+      const err = await window.TPG.signInWithGoogle();
+      if (err) {
+        showFeedback(err, 'error');
+        googleBtn.disabled   = false;
+        googleBtn.innerHTML  = GOOGLE_INNER;
+      }
+    });
+
+    /* ── Tab switching ──────────────────────────────────────── */
+    const tabs         = document.querySelectorAll('.auth-tab');
+    const signinForm   = document.getElementById('signinForm');
+    const registerForm = document.getElementById('registerForm');
+    const headingEl    = document.getElementById('authHeading');
+
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        tabs.forEach(function (t) {
+          t.classList.remove('active');
+          t.setAttribute('aria-selected', 'false');
+        });
+        tab.classList.add('active');
+        tab.setAttribute('aria-selected', 'true');
+
+        const isSignIn = tab.dataset.tab === 'signin';
+        signinForm.style.display   = isSignIn ? 'flex' : 'none';
+        registerForm.style.display = isSignIn ? 'none' : 'flex';
+
+        headingEl.innerHTML = isSignIn
+          ? '<h1>Welcome back</h1><p>Sign in to save and sync your prompts</p>'
+          : '<h1>Create account</h1><p>Join thousands of prompt engineers today</p>';
+
+        showFeedback(null);  // clear any error
+      });
+    });
+
+    /* ── Sign In form ───────────────────────────────────────── */
+    signinForm.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const btn      = signinForm.querySelector('button[type="submit"]');
+      const email    = document.getElementById('siEmail').value.trim();
+      const password = document.getElementById('siPassword').value;
+
+      if (!email || !password) {
+        showFeedback('Please fill in both fields.', 'error');
+        return;
+      }
+
+      btn.disabled    = true;
+      btn.textContent = 'Signing in…';
+
+      const err = await window.TPG.signInWithEmail(email, password);
+      if (err) {
+        showFeedback(err, 'error');
+        btn.disabled    = false;
+        btn.textContent = 'Sign In';
+      }
+    });
+
+    /* ── Register form ──────────────────────────────────────── */
+    registerForm.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const btn      = registerForm.querySelector('button[type="submit"]');
+      const name     = document.getElementById('regName').value.trim();
+      const email    = document.getElementById('regEmail').value.trim();
+      const password = document.getElementById('regPassword').value;
+
+      if (!name || !email || !password) {
+        showFeedback('Please fill in all fields.', 'error');
+        return;
+      }
+      if (password.length < 6) {
+        showFeedback('Password must be at least 6 characters.', 'error');
+        return;
+      }
+
+      btn.disabled    = true;
+      btn.textContent = 'Creating account…';
+
+      const err = await window.TPG.createAccount(name, email, password);
+      if (err) {
+        showFeedback(err, 'error');
+        btn.disabled    = false;
+        btn.textContent = 'Create Account';
+      }
+    });
+
+    /* ── Forgot password ────────────────────────────────────── */
+    document.getElementById('forgotLink').addEventListener('click', async function (e) {
+      e.preventDefault();
+      const email = document.getElementById('siEmail').value.trim();
+
+      if (!email) {
+        showFeedback('Enter your email address above, then click "Forgot password?".', 'error');
+        document.getElementById('siEmail').focus();
+        return;
+      }
+
+      const err = await window.TPG.resetPassword(email);
+      if (err) showFeedback(err, 'error');
+      else     showFeedback('Password reset email sent! Check your inbox.', 'success');
+    });
+  </script>
+
+</body>
+</html>
+
+

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="50 expert prompt templates for this subcategory. Copy any template and fill in the brackets to get powerful AI results.">
+  <meta name="theme-color" content="#7C3AED">
+  <title>Prompt Templates — The Prompt Generation</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+
+  <link rel="stylesheet" href="../css/animations.css">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/home.css">
+  <link rel="stylesheet" href="../css/prompts.css">
+  <link rel="stylesheet" href="../css/categories.css">
+  <link rel="stylesheet" href="../css/auth.css">
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════
+       NAVIGATION
+  ══════════════════════════════════════════════════════════ -->
+  <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="navbar__inner">
+      <a href="../index.html" class="navbar__logo" aria-label="The Prompt Generation — Home">
+        <div class="navbar__logo-icon" aria-hidden="true">⚡</div>
+        <span class="navbar__logo-text">The <span class="accent">Prompt</span> Generation</span>
+      </a>
+
+      <ul class="navbar__nav" role="list">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="categories.html">Prompts</a></li>
+        <li><a href="community.html">Community</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+
+      <div class="navbar__actions">
+        <a href="signin.html" id="navSignInBtn" class="btn btn--secondary btn--sm">Sign In</a>
+        <a href="categories.html" class="btn btn--primary btn--sm">Browse Prompts →</a>
+        <button class="navbar__hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu" role="menu">
+    <a href="../index.html" role="menuitem">🏠 Home</a>
+    <a href="categories.html" role="menuitem">⚡ Prompts</a>
+    <a href="community.html" role="menuitem">🤝 Community</a>
+    <a href="about.html" role="menuitem">ℹ️ About</a>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       PAGE HEADER — populated by subprompts.js
+  ══════════════════════════════════════════════════════════ -->
+  <header class="cat-page-header cat-page-header--accented" id="pageHeader" aria-label="Page header">
+    <div class="container cat-page-header__inner">
+
+      <!-- Breadcrumb — populated by JS -->
+      <nav class="breadcrumb" id="breadcrumb" aria-label="Breadcrumb">
+        <a href="../index.html">Home</a>
+        <span class="breadcrumb__sep" aria-hidden="true">›</span>
+        <a href="categories.html">Categories</a>
+        <span class="breadcrumb__sep" aria-hidden="true">›</span>
+        <a href="#" id="breadcrumbCat">Loading…</a>
+        <span class="breadcrumb__sep" aria-hidden="true">›</span>
+        <span class="breadcrumb__current" id="breadcrumbSub">…</span>
+      </nav>
+
+      <!-- Header content — populated by JS -->
+      <div id="pageHeaderContent">
+        <div class="state-loading">
+          <div class="state-loading__spinner"></div>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════════════════════
+       MAIN — 50 TEMPLATE CARDS
+  ══════════════════════════════════════════════════════════ -->
+  <main style="background:var(--bg-0);padding:40px 0 80px;" aria-label="Prompt templates">
+    <div class="container">
+
+      <!-- Back + navigation bar -->
+      <div class="back-bar">
+        <div id="tplCount" style="font-size:0.85rem;color:var(--text-3);">
+          50 prompt templates in this subcategory
+        </div>
+        <div style="display:flex;gap:8px;">
+          <a id="backToSubcat" href="categories.html" class="btn btn--ghost btn--sm">← Back to Subcategories</a>
+          <a href="categories.html" class="btn btn--ghost btn--sm">🗂️ All Categories</a>
+        </div>
+      </div>
+
+      <!-- Info banner — populated by JS -->
+      <div id="infoBanner" class="subprompts-info" style="display:none;"></div>
+
+      <!-- 50 Template Cards Grid — populated by subprompts.js -->
+      <div class="tpl-grid" id="tplGrid" role="list" aria-label="Prompt templates" aria-busy="true">
+        <!-- Skeleton loading -->
+        <div class="tpl-card" style="min-height:200px;background:linear-gradient(90deg,var(--bg-card) 25%,var(--bg-card-hover) 50%,var(--bg-card) 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;"></div>
+        <div class="tpl-card" style="min-height:200px;background:linear-gradient(90deg,var(--bg-card) 25%,var(--bg-card-hover) 50%,var(--bg-card) 75%);background-size:200% 100%;animation:shimmer 1.5s infinite 0.1s;"></div>
+        <div class="tpl-card" style="min-height:200px;background:linear-gradient(90deg,var(--bg-card) 25%,var(--bg-card-hover) 50%,var(--bg-card) 75%);background-size:200% 100%;animation:shimmer 1.5s infinite 0.2s;"></div>
+      </div>
+
+      <!-- Siblings navigation (prev / next subcategory) -->
+      <div id="siblingNav" style="display:flex;align-items:center;justify-content:space-between;margin-top:56px;gap:16px;flex-wrap:wrap;">
+        <a id="prevSubcat" href="#" class="btn btn--secondary" style="display:none;">← Previous Subcategory</a>
+        <span style="flex:1;"></span>
+        <a id="nextSubcat" href="#" class="btn btn--secondary" style="display:none;">Next Subcategory →</a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ═══════════════════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════════════════════ -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a href="../index.html" class="navbar__logo">
+            <div class="navbar__logo-icon" aria-hidden="true">⚡</div>
+            <span class="navbar__logo-text">The <span class="accent">Prompt</span> Generation</span>
+          </a>
+          <p class="footer__brand-desc">50 templates per subcategory. All include [BRACKETS] for your inputs.</p>
+          <div class="footer__social">
+            <a href="#" aria-label="X">𝕏</a>
+            <a href="#" aria-label="Discord">💬</a>
+            <a href="#" aria-label="GitHub">⌥</a>
+            <a href="#" aria-label="YouTube">▶</a>
+          </div>
+        </div>
+        <div>
+          <h3 class="footer__col-title">Navigate</h3>
+          <ul class="footer__links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="categories.html">All Prompts</a></li>
+            <li><a href="categories.html">All Categories</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="footer__col-title">Categories</h3>
+          <ul class="footer__links">
+            <li><a href="subcategories.html?cat=cat-01">💻 Coding</a></li>
+            <li><a href="subcategories.html?cat=cat-02">📈 Business</a></li>
+            <li><a href="subcategories.html?cat=cat-05">🤖 AI & Auto</a></li>
+            <li><a href="subcategories.html?cat=cat-11">💚 Health</a></li>
+            <li><a href="subcategories.html?cat=cat-12">💰 Wealth</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="footer__col-title">Company</h3>
+          <ul class="footer__links">
+            <li><a href="#">About Us</a></li>
+            <li><a href="submit.html">Submit a Prompt</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>© 2025 The Prompt Generation. All rights reserved.</span>
+        <span>Made with ⚡ for the AI community</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+  <!-- Scripts -->
+  <script src="../js/data/marketplace-framework.js"></script>
+  <script src="../js/data/category-meta.js"></script>
+  <script src="../js/auth/firebase-config.js"></script>
+  <script src="../js/auth/auth.js"></script>
+  <script src="../js/auth/likes.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/pages/subprompts.js"></script>
+
+</body>
+</html>
+

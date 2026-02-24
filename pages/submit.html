@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Submit your best AI prompt to The Prompt Generation library. Share with 52,000+ AI enthusiasts.">
+  <meta name="theme-color" content="#7C3AED">
+  <title>Submit a Prompt — The Prompt Generation</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+
+  <link rel="stylesheet" href="../css/animations.css">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/categories.css">
+  <link rel="stylesheet" href="../css/auth.css">
+
+  <style>
+    /* ── Submit Page Styles ── */
+    .submit-hero {
+      padding: calc(var(--nav-height) + 48px) 0 48px;
+      background: var(--bg-0);
+      position: relative;
+      overflow: hidden;
+    }
+    .submit-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--gradient-glow);
+      pointer-events: none;
+    }
+    .submit-hero__inner { position: relative; z-index: 1; }
+
+    .submit-form-wrap {
+      background: var(--bg-0);
+      padding: 0 0 80px;
+    }
+
+    .submit-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-2);
+      border-radius: var(--r-xl);
+      padding: 36px 32px;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .submit-card h2 {
+      font-size: 1.3rem;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+    }
+    .submit-card > p {
+      color: var(--text-3);
+      font-size: 0.85rem;
+      margin-bottom: 28px;
+    }
+
+    .form-group {
+      margin-bottom: 22px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-1);
+      margin-bottom: 8px;
+    }
+    .form-group label .required {
+      color: #EF4444;
+      margin-left: 2px;
+    }
+    .form-group small {
+      display: block;
+      color: var(--text-4);
+      font-size: 0.75rem;
+      margin-top: 6px;
+    }
+
+    .form-input,
+    .form-textarea,
+    .form-select {
+      width: 100%;
+      background: var(--bg-2);
+      border: 1px solid var(--border-2);
+      border-radius: var(--r-md);
+      padding: 12px 14px;
+      font-family: inherit;
+      font-size: 0.9rem;
+      color: var(--text-0);
+      transition: border-color var(--t-fast), box-shadow var(--t-fast);
+      outline: none;
+      box-sizing: border-box;
+    }
+    .form-input:focus,
+    .form-textarea:focus,
+    .form-select:focus {
+      border-color: var(--violet);
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
+    }
+    .form-input::placeholder,
+    .form-textarea::placeholder {
+      color: var(--text-4);
+    }
+
+    .form-textarea {
+      min-height: 180px;
+      resize: vertical;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+      line-height: 1.7;
+    }
+
+    .form-select {
+      appearance: none;
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%2394A3B8'%3E%3Cpath d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 36px;
+    }
+    .form-select option { background: var(--bg-2); color: var(--text-0); }
+
+    .tags-input-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      background: var(--bg-2);
+      border: 1px solid var(--border-2);
+      border-radius: var(--r-md);
+      padding: 8px 12px;
+      min-height: 44px;
+      transition: border-color var(--t-fast), box-shadow var(--t-fast);
+      cursor: text;
+    }
+    .tags-input-wrap:focus-within {
+      border-color: var(--violet);
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
+    }
+    .tags-input-wrap input {
+      flex: 1;
+      min-width: 100px;
+      background: none;
+      border: none;
+      outline: none;
+      font-family: inherit;
+      font-size: 0.85rem;
+      color: var(--text-0);
+      padding: 4px 0;
+    }
+    .tags-input-wrap input::placeholder { color: var(--text-4); }
+
+    .tag-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(124, 58, 237, 0.14);
+      color: var(--violet-light);
+      border: 1px solid rgba(124, 58, 237, 0.2);
+      border-radius: var(--r-full);
+      padding: 4px 10px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+    .tag-chip button {
+      background: none;
+      border: none;
+      color: var(--text-3);
+      cursor: pointer;
+      font-size: 0.9rem;
+      padding: 0;
+      line-height: 1;
+    }
+    .tag-chip button:hover { color: #EF4444; }
+
+    .ai-tools-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .ai-tool-checkbox {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      background: var(--bg-2);
+      border: 1px solid var(--border-2);
+      border-radius: var(--r-md);
+      cursor: pointer;
+      font-size: 0.82rem;
+      color: var(--text-2);
+      transition: all var(--t-fast);
+      user-select: none;
+    }
+    .ai-tool-checkbox:hover { border-color: var(--border-3); color: var(--text-1); }
+    .ai-tool-checkbox input { display: none; }
+    .ai-tool-checkbox.checked {
+      background: rgba(124, 58, 237, 0.12);
+      border-color: var(--violet);
+      color: var(--text-0);
+    }
+
+    .submit-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-1);
+    }
+    .submit-actions .btn { min-width: 160px; text-align: center; }
+
+    .submit-success {
+      text-align: center;
+      padding: 48px 24px;
+    }
+    .submit-success__icon { font-size: 3.5rem; margin-bottom: 16px; }
+    .submit-success h2 { font-size: 1.4rem; margin-bottom: 10px; }
+    .submit-success p { color: var(--text-2); font-size: 0.9rem; margin-bottom: 24px; max-width: 400px; margin-left: auto; margin-right: auto; line-height: 1.7; }
+
+    .char-count {
+      text-align: right;
+      font-size: 0.72rem;
+      color: var(--text-4);
+      margin-top: 4px;
+    }
+    .char-count.warn { color: #F59E0B; }
+    .char-count.over { color: #EF4444; }
+
+    #submitSignInPrompt {
+      text-align: center;
+      padding: 40px 20px;
+    }
+    #submitSignInPrompt p { color: var(--text-2); margin-bottom: 16px; font-size: 0.95rem; }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════
+       NAVIGATION
+  ══════════════════════════════════════════════════════════ -->
+  <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="navbar__inner">
+      <a href="../index.html" class="navbar__logo" aria-label="The Prompt Generation — Home">
+        <div class="navbar__logo-icon" aria-hidden="true">⚡</div>
+        <span class="navbar__logo-text">The <span class="accent">Prompt</span> Generation</span>
+      </a>
+
+      <ul class="navbar__nav" role="list">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="categories.html">Prompts</a></li>
+        <li><a href="community.html">Community</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+
+      <div class="navbar__actions">
+        <a href="signin.html" id="navSignInBtn" class="btn btn--secondary btn--sm">Sign In</a>
+        <a href="submit.html" class="btn btn--primary btn--sm">Submit Prompt ✦</a>
+        <button class="navbar__hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu" role="menu">
+    <a href="../index.html" role="menuitem">🏠 Home</a>
+    <a href="categories.html" role="menuitem">⚡ Prompts</a>
+    <a href="community.html" role="menuitem">🤝 Community</a>
+    <a href="about.html" role="menuitem">ℹ️ About</a>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       HERO
+  ══════════════════════════════════════════════════════════ -->
+  <header class="submit-hero" aria-label="Submit a prompt header">
+    <div class="container submit-hero__inner">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="../index.html">Home</a>
+        <span class="breadcrumb__sep" aria-hidden="true">›</span>
+        <span class="breadcrumb__current">Submit Prompt</span>
+      </nav>
+
+      <span class="section-label" style="margin-bottom:16px;">✦ Contribute to the Library</span>
+      <h1 style="font-size:clamp(2rem,5vw,3rem);letter-spacing:-0.03em;margin-bottom:10px;">
+        Submit Your <span class="text-gradient">Prompt</span>
+      </h1>
+      <p style="color:var(--text-2);font-size:0.95rem;max-width:520px;line-height:1.7;">
+        Share your best prompts with <strong style="color:var(--text-1);">52,000+ AI enthusiasts</strong>.
+        Approved prompts appear in the public library and earn you community points.
+      </p>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════════════════════
+       FORM
+  ══════════════════════════════════════════════════════════ -->
+  <main class="submit-form-wrap" aria-label="Submit prompt form">
+    <div class="container">
+      <div class="submit-card" id="submitCard">
+
+        <!-- Form (shown when signed in) -->
+        <div id="submitFormWrap">
+          <h2>✦ Prompt Details</h2>
+          <p>Fill out the form below. Fields marked with <span style="color:#EF4444;">*</span> are required.</p>
+
+          <form id="submitForm" novalidate>
+
+            <!-- Title -->
+            <div class="form-group">
+              <label for="promptTitle">Prompt Title <span class="required">*</span></label>
+              <input type="text" id="promptTitle" class="form-input" placeholder="e.g. Ultimate Code Review Checklist" maxlength="100" required>
+              <div class="char-count"><span id="titleCount">0</span>/100</div>
+            </div>
+
+            <!-- Prompt Text -->
+            <div class="form-group">
+              <label for="promptText">Prompt Text <span class="required">*</span></label>
+              <textarea id="promptText" class="form-textarea" placeholder="Paste or type your full prompt here..." maxlength="5000" required></textarea>
+              <div class="char-count"><span id="textCount">0</span>/5,000</div>
+              <small>Tip: Use [BRACKETS] for user-replaceable variables like [TOPIC], [LANGUAGE], etc.</small>
+            </div>
+
+            <!-- Category -->
+            <div class="form-group">
+              <label for="promptCategory">Category <span class="required">*</span></label>
+              <select id="promptCategory" class="form-select" required>
+                <option value="" disabled selected>Select a category...</option>
+                <!-- populated by JS -->
+              </select>
+            </div>
+
+            <!-- Tags -->
+            <div class="form-group">
+              <label>Tags <small style="font-weight:400;color:var(--text-4);margin-left:4px;">(up to 5)</small></label>
+              <div class="tags-input-wrap" id="tagsWrap">
+                <input type="text" id="tagInput" placeholder="Type a tag and press Enter..." maxlength="30">
+              </div>
+              <small>Press Enter or comma to add a tag.</small>
+            </div>
+
+            <!-- AI Tools -->
+            <div class="form-group">
+              <label>Works Best With</label>
+              <div class="ai-tools-grid" id="aiToolsGrid">
+                <!-- populated by JS -->
+              </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="submit-actions">
+              <button type="submit" class="btn btn--primary btn--lg" id="submitBtn">
+                ✦ Submit Prompt
+              </button>
+              <button type="button" class="btn btn--ghost btn--lg" id="previewBtn">
+                👁 Preview
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Sign-in prompt (shown when not signed in) -->
+        <div id="submitSignInPrompt" style="display:none;">
+          <div style="font-size:3rem;margin-bottom:16px;">🔒</div>
+          <h2 style="font-size:1.3rem;margin-bottom:8px;">Sign in to Submit</h2>
+          <p>You need an account to submit prompts. It's free and takes 10 seconds.</p>
+          <a href="signin.html" class="btn btn--primary btn--lg">Sign In / Create Account</a>
+        </div>
+
+        <!-- Success state -->
+        <div id="submitSuccess" style="display:none;">
+          <div class="submit-success">
+            <div class="submit-success__icon">🎉</div>
+            <h2>Prompt Submitted!</h2>
+            <p>Your prompt has been submitted for review. It will appear in the library once approved by our team.</p>
+            <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+              <button class="btn btn--primary" id="submitAnother">Submit Another</button>
+              <a href="categories.html" class="btn btn--secondary">Browse Prompts</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- ═══════════════════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════════════════════ -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a href="../index.html" class="navbar__logo">
+            <div class="navbar__logo-icon" aria-hidden="true">⚡</div>
+            <span class="navbar__logo-text">The <span class="accent">Prompt</span> Generation</span>
+          </a>
+          <p class="footer__brand-desc">The world's most comprehensive AI prompt library.</p>
+          <div class="footer__social">
+            <a href="#" aria-label="X">𝕏</a>
+            <a href="#" aria-label="Discord">💬</a>
+            <a href="#" aria-label="GitHub">⌥</a>
+            <a href="#" aria-label="YouTube">▶</a>
+          </div>
+        </div>
+        <div>
+          <h3 class="footer__col-title">Navigate</h3>
+          <ul class="footer__links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="categories.html">All Prompts</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="footer__col-title">Categories</h3>
+          <ul class="footer__links">
+            <li><a href="subcategories.html?cat=cat-01">💻 Coding</a></li>
+            <li><a href="subcategories.html?cat=cat-02">📈 Business</a></li>
+            <li><a href="subcategories.html?cat=cat-03">📣 Marketing</a></li>
+            <li><a href="subcategories.html?cat=cat-05">🤖 AI & Auto</a></li>
+            <li><a href="subcategories.html?cat=cat-12">💰 Wealth</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="footer__col-title">Company</h3>
+          <ul class="footer__links">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="submit.html">Submit a Prompt</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>© 2025 The Prompt Generation. All rights reserved.</span>
+        <span>Made with ⚡ for the AI community</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+  <!-- Scripts -->
+  <script src="../js/data/marketplace-framework.js"></script>
+  <script src="../js/data/category-meta.js"></script>
+  <script src="../js/auth/firebase-config.js"></script>
+  <script src="../js/auth/auth.js"></script>
+  <script src="../js/auth/likes.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/pages/submit.js"></script>
+
+</body>
+</html>
+

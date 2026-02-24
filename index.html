@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The Prompt Generation — The world's largest curated library of AI prompts for ChatGPT, Claude, Gemini, Midjourney and more.">
+  <meta name="theme-color" content="#7C3AED">
+  <title>The Prompt Generation — Where Prompts Are Born</title>
+
+  <!-- Preconnect for fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Favicon (inline SVG emoji) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/home.css">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════
+       NAVIGATION
+  ══════════════════════════════════════════════════════════ -->
+  <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="navbar__inner">
+
+      <!-- Logo -->
+      <a href="index.html" class="navbar__logo" aria-label="The Prompt Generation — Home">
+        <div class="navbar__logo-icon" aria-hidden="true">⚡</div>
+        <span class="navbar__logo-text">The <span class="accent">Prompt</span> Generation</span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <ul class="navbar__nav" role="list">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="pages/categories.html">Prompts</a></li>
+        <li><a href="pages/community.html">Community</a></li>
+        <li><a href="pages/about.html">About</a></li>
+      </ul>
+
+      <!-- Actions -->
+      <div class="navbar__actions">
+        <a href="pages/signin.html" id="navSignInBtn" class="btn btn--secondary btn--sm">Sign In</a>
+        <a href="pages/categories.html" class="btn btn--primary btn--sm">Browse Prompts →</a>
+        <button class="navbar__hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- Mobile Dropdown -->
+  <div class="mobile-menu" id="mobileMenu" role="menu">
+    <a href="index.html" role="menuitem">🏠 Home</a>
+    <a href="pages/categories.html" role="menuitem">⚡ Prompts</a>
+    <a href="pages/community.html" role="menuitem">🤝 Community</a>
+    <a href="pages/about.html" role="menuitem">ℹ️ About</a>
+    <div style="height:1px;background:var(--border-2);margin:8px 0;"></div>
+    <a href="pages/categories.html" class="btn btn--primary" role="menuitem" style="text-align:center;">Browse All Prompts →</a>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       HERO SECTION
+  ══════════════════════════════════════════════════════════ -->
+  <section class="hero" id="home" aria-label="Hero">
+
+    <!-- Particle canvas -->
+    <canvas id="particles" class="hero__canvas" aria-hidden="true"></canvas>
+
+    <!-- Ambient blobs -->
+    <div class="hero__blob hero__blob--1" aria-hidden="true"></div>
+    <div class="hero__blob hero__blob--2" aria-hidden="true"></div>
+    <div class="hero__blob hero__blob--3" aria-hidden="true"></div>
+
+    <!-- Noise texture -->
+    <div class="hero__noise" aria-hidden="true"></div>
+
+    <div class="container">
+      <div class="hero__content">
+
+        <!-- Beta badge -->
+        <div class="hero__badge hero-animate">
+          <span class="badge badge--violet">🚀 Now in Beta — Join Free, No Credit Card</span>
+        </div>
+
+        <!-- Headline -->
+        <h1 class="hero__title display-xl hero-animate">
+          Craft Perfect<br>
+          <span class="text-gradient">AI Prompts</span><br>
+          That Actually Work
+        </h1>
+
+        <!-- Typewriter -->
+        <div class="hero__typewriter hero-animate" aria-live="polite">
+          <span class="hero__typewriter-label">Generate prompts for</span>
+          <span id="typewriter" class="hero__typewriter-text" aria-label="changing prompt categories"></span>
+          <span class="hero__cursor" aria-hidden="true">|</span>
+        </div>
+
+        <!-- Description -->
+        <p class="hero__desc hero-animate">
+          The world's largest curated library of high-quality AI prompts.
+          Browse, copy, and submit prompts for ChatGPT, Claude, Gemini,
+          Midjourney, and more — all in one place.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="hero__actions hero-animate">
+          <a href="pages/categories.html" class="btn btn--primary btn--lg">
+            🔍 Browse All Prompts
+          </a>
+          <a href="#featured" class="btn btn--secondary btn--lg">
+            View Featured →
+          </a>
+        </div>
+
+        <!-- Stats bar -->
+        <div class="hero__stats hero-animate" role="list" aria-label="Platform statistics">
+          <div class="hero__stat" role="listitem">
+            <span class="hero__stat-value" data-count="10247" data-suffix="" aria-label="10,247 curated prompts">0</span>
+            <span class="hero__stat-label">Curated Prompts</span>
+          </div>
+          <div class="hero__stat-divider" aria-hidden="true"></div>
+          <div class="hero__stat" role="listitem">
+            <span class="hero__stat-value" data-count="52891" data-suffix="" aria-label="52,891 monthly users">0</span>
+            <span class="hero__stat-label">Monthly Users</span>
+          </div>
+          <div class="hero__stat-divider" aria-hidden="true"></div>
+          <div class="hero__stat" role="listitem">
+            <span class="hero__stat-value" data-count="284" data-suffix="K+" aria-label="284K+ prompts copied">0</span>
+            <span class="hero__stat-label">Prompts Copied</span>
+          </div>
+          <div class="hero__stat-divider" aria-hidden="true"></div>
+          <div class="hero__stat" role="listitem">
+            <span class="hero__stat-value" data-count="8" data-suffix="" aria-label="8 AI tools supported">0</span>
+            <span class="hero__stat-label">AI Tools Supported</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="hero__scroll" aria-hidden="true">
+      <div class="hero__scroll-icon"><span></span></div>
+    </div>
+
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       FEATURES SECTION
+  ══════════════════════════════════════════════════════════ -->
+  <section class="section features" id="features" aria-label="Features">
+    <div class="container">
+
+      <div class="section-header section-header--center">
+        <span class="section-label reveal">Why The Prompt Generation?</span>
+        <h2 class="display-md reveal delay-1">
+          Everything you need to master<br>
+          <span class="text-gradient">AI prompting</span>
+        </h2>
+        <p class="reveal delay-2" style="color:var(--text-2);font-size:1.05rem;margin-top:16px;max-width:520px;margin-left:auto;margin-right:auto;line-height:1.75;">
+          From beginner-friendly templates to expert-level prompt engineering — we've built the complete toolkit.
+        </p>
+      </div>
+
+      <div class="features__grid">
+        <div class="feature-card card reveal delay-1">
+          <div class="feature-card__icon" aria-hidden="true">🎯</div>
+          <h3 class="feature-card__title">Curated Quality</h3>
+          <p class="feature-card__desc">Every prompt is tested and community-rated. No filler — only prompts that deliver real, measurable results every time.</p>
+        </div>
+        <div class="feature-card card reveal delay-2">
+          <div class="feature-card__icon" aria-hidden="true">⚡</div>
+          <h3 class="feature-card__title">One-Click Copy</h3>
+          <p class="feature-card__desc">Instant copy for any prompt. Fully customizable templates with clear variable placeholders in [BRACKETS] — ready to use.</p>
+        </div>
+        <div class="feature-card card reveal delay-3">
+          <div class="feature-card__icon" aria-hidden="true">🔍</div>
+          <h3 class="feature-card__title">Smart Filtering</h3>
+          <p class="feature-card__desc">Find exactly what you need. Filter by category, AI tool, difficulty level, and use case with powerful real-time search.</p>
+        </div>
+        <div class="feature-card card reveal delay-2">
+          <div class="feature-card__icon" aria-hidden="true">🤝</div>
+          <h3 class="feature-card__title">Community Driven</h3>
+          <p class="feature-card__desc">Built by prompt engineers, for everyone. Submit your best prompts, earn recognition, and help others unlock AI's potential.</p>
+        </div>
+        <div class="feature-card card reveal delay-3">
+          <div class="feature-card__icon" aria-hidden="true">📊</div>
+          <h3 class="feature-card__title">Performance Data</h3>
+          <p class="feature-card__desc">See copy counts, ratings, and real community feedback on every prompt before you use it. Data-driven prompting.</p>
+        </div>
+        <div class="feature-card card reveal delay-4">
+          <div class="feature-card__icon" aria-hidden="true">🔄</div>
+          <h3 class="feature-card__title">Always Updated</h3>
+          <p class="feature-card__desc">New prompts added daily, existing ones refined as AI tools evolve. Your library is always current and optimized.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       FEATURED PROMPTS
+  ══════════════════════════════════════════════════════════ -->
+  <section class="section featured" id="featured" aria-label="Featured prompts">
+    <div class="container">
+
+      <div class="section-header">
+        <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px;">
+          <div>
+            <span class="section-label reveal">⭐ Hand-Picked</span>
+            <h2 class="display-md reveal delay-1">
+              Featured <span class="text-gradient">Prompts</span>
+            </h2>
+            <p class="reveal delay-2" style="color:var(--text-2);margin-top:10px;">Our highest-rated prompts across every category.</p>
+          </div>
+          <a href="pages/categories.html" class="btn btn--secondary reveal" style="flex-shrink:0;margin-bottom:4px;">
+            View All 10,000+ Prompts →
+          </a>
+        </div>
+      </div>
+
+      <!-- Cards rendered by home.js from PROMPTS_DATA -->
+      <div class="featured__grid" id="featuredGrid" aria-label="Featured prompt cards">
+        <!-- Loading skeleton -->
+        <div class="card" style="min-height:260px;background:linear-gradient(90deg,var(--bg-card) 25%,var(--bg-card-hover) 50%,var(--bg-card) 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;"></div>
+        <div class="card" style="min-height:260px;background:linear-gradient(90deg,var(--bg-card) 25%,var(--bg-card-hover) 50%,var(--bg-card) 75%);background-size:200% 100%;animation:shimmer 1.5s infinite 0.2s;"></div>
+        <div class="card" style="min-height:260px;background:linear-gradient(90deg,var(--bg-card) 25%,var(--bg-card-hover) 50%,var(--bg-card) 75%);background-size:200% 100%;animation:shimmer 1.5s infinite 0.4s;"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       CATEGORIES
+  ══════════════════════════════════════════════════════════ -->
+  <section class="section categories" id="categories" aria-label="Browse by category">
+    <div class="container">
+
+      <div class="section-header section-header--center">
+        <span class="section-label reveal">📂 Browse by Category</span>
+        <h2 class="display-md reveal delay-1">
+          Prompts for <span class="text-gradient">every need</span>
+        </h2>
+        <p class="reveal delay-2" style="color:var(--text-2);margin-top:12px;">
+          From coding to creative writing — we've got the perfect prompt waiting for you.
+        </p>
+      </div>
+
+      <!-- Rendered by home.js from CATEGORY_META + framework -->
+      <div class="categories__grid" id="homeCatGrid" aria-label="Browse prompt categories">
+        <!-- JS renders 8 category tiles here -->
+      </div>
+
+      <div style="text-align:center;margin-top:40px;" class="reveal">
+        <a href="pages/categories.html" class="btn btn--secondary btn--lg">
+          View All 19 Categories →
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       CTA SECTION
+  ══════════════════════════════════════════════════════════ -->
+  <section class="section cta-section" aria-label="Call to action">
+    <div class="container">
+      <div class="cta-box reveal">
+        <div class="cta-box__glow" aria-hidden="true"></div>
+        <div class="cta-box__content">
+          <span class="section-label" style="margin-bottom:24px;">🚀 Get Started Today — It's Free</span>
+          <h2 class="display-md">
+            Ready to level up your<br><span class="text-gradient">AI workflow?</span>
+          </h2>
+          <p style="color:var(--text-2);font-size:1.05rem;line-height:1.75;margin:20px auto 0;max-width:480px;">
+            Join <strong style="color:var(--text-1);">52,000+</strong> creators, developers, and professionals who use
+            The Prompt Generation every single day to get better results from AI.
+          </p>
+          <div class="cta-box__actions">
+            <a href="pages/categories.html" class="btn btn--primary btn--lg">
+              ⚡ Browse Prompts Free
+            </a>
+            <a href="pages/submit.html" class="btn btn--secondary btn--lg">
+              Submit Your Prompt
+            </a>
+          </div>
+
+          <!-- Social proof -->
+          <div style="margin-top:32px;display:flex;align-items:center;justify-content:center;gap:8px;font-size:0.85rem;color:var(--text-3);">
+            <span>⭐⭐⭐⭐⭐</span>
+            <span>Loved by 52,000+ users · No credit card required</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════════════════════ -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__grid">
+
+        <!-- Brand col -->
+        <div class="footer__brand">
+          <a href="index.html" class="navbar__logo" aria-label="The Prompt Generation">
+            <div class="navbar__logo-icon" aria-hidden="true">⚡</div>
+            <span class="navbar__logo-text">The <span class="accent">Prompt</span> Generation</span>
+          </a>
+          <p class="footer__brand-desc">
+            The world's most comprehensive AI prompt library. Curated by prompt engineers, rated by our community.
+          </p>
+          <div class="footer__social" aria-label="Social links">
+            <a href="#" aria-label="X / Twitter" title="Follow us on X">𝕏</a>
+            <a href="#" aria-label="Discord community" title="Join our Discord">💬</a>
+            <a href="#" aria-label="GitHub" title="View on GitHub">⌥</a>
+            <a href="#" aria-label="YouTube" title="Watch on YouTube">▶</a>
+          </div>
+        </div>
+
+        <!-- Explore col -->
+        <div>
+          <h3 class="footer__col-title">Explore</h3>
+          <ul class="footer__links">
+            <li><a href="pages/categories.html">All Prompts</a></li>
+            <li><a href="#">Featured</a></li>
+            <li><a href="#">New Arrivals</a></li>
+            <li><a href="#">Most Popular</a></li>
+            <li><a href="#">Collections</a></li>
+          </ul>
+        </div>
+
+        <!-- Categories col -->
+        <div>
+          <h3 class="footer__col-title">Categories</h3>
+          <ul class="footer__links">
+            <li><a href="pages/categories.html">💻 Coding</a></li>
+            <li><a href="pages/categories.html">✍️ Writing</a></li>
+            <li><a href="pages/categories.html">🎨 Creative</a></li>
+            <li><a href="pages/categories.html">📈 Business</a></li>
+            <li><a href="pages/categories.html">📣 Marketing</a></li>
+          </ul>
+        </div>
+
+        <!-- Company col -->
+        <div>
+          <h3 class="footer__col-title">Company</h3>
+          <ul class="footer__links">
+            <li><a href="pages/about.html">About Us</a></li>
+            <li><a href="pages/community.html">Community</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer__bottom">
+        <span>© 2025 The Prompt Generation. All rights reserved.</span>
+        <span>Made with ⚡ for the AI community</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+  <!-- Scripts -->
+  <script src="js/data/prompts.js"></script>
+  <script src="js/data/marketplace-framework.js"></script>
+  <script src="js/data/category-meta.js"></script>
+  <script src="js/data/featured-prompts.js"></script>
+  <script src="js/auth/firebase-config.js"></script>
+  <script src="js/auth/auth.js"></script>
+  <script src="js/auth/likes.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/pages/home.js"></script>
+
+</body>
+</html>

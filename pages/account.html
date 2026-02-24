@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Your account — The Prompt Generation. View saved prompts, stats, and settings.">
+  <meta name="theme-color" content="#7C3AED">
+  <title>My Account — The Prompt Generation</title>
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link rel="stylesheet" href="../css/animations.css">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/auth.css">
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════
+       NAVIGATION
+  ══════════════════════════════════════════════════════════ -->
+  <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="navbar__inner">
+      <a href="../index.html" class="navbar__logo" aria-label="The Prompt Generation — Home">
+        <div class="navbar__logo-icon" aria-hidden="true">⚡</div>
+        <span class="navbar__logo-text">The <span class="accent">Prompt</span> Generation</span>
+      </a>
+
+      <ul class="navbar__nav" role="list">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="categories.html">Prompts</a></li>
+        <li><a href="#">Community</a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+
+      <div class="navbar__actions">
+        <a href="signin.html" id="navSignInBtn" class="btn btn--secondary btn--sm">Sign In</a>
+        <a href="categories.html" class="btn btn--primary btn--sm">Browse Prompts →</a>
+        <button class="navbar__hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu" role="menu">
+    <a href="../index.html" role="menuitem">🏠 Home</a>
+    <a href="categories.html" role="menuitem">⚡ Prompts</a>
+    <a href="account.html" role="menuitem">👤 My Account</a>
+    <div style="height:1px;background:var(--border-2);margin:8px 0;"></div>
+    <button class="btn btn--secondary" role="menuitem" onclick="window.TPG && window.TPG.signOut()" style="text-align:center;width:100%;">Sign Out</button>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       ACCOUNT PAGE
+  ══════════════════════════════════════════════════════════ -->
+  <div class="account-page">
+
+    <!-- ── Hero strip ── -->
+    <div class="account-hero">
+      <div class="container account-hero__inner">
+
+        <!-- Avatar -->
+        <div id="heroAvatar"></div>
+
+        <!-- Name / email / badge -->
+        <div>
+          <h1 class="account-user__name" id="heroName">Loading…</h1>
+          <p class="account-user__email" id="heroEmail"></p>
+          <div class="account-user__badges">
+            <span class="account-user__badge">⚡ Prompt Engineer</span>
+            <span class="account-user__badge" id="heroBadgeProvider" style="display:none;"></span>
+          </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="account-hero__actions">
+          <a href="categories.html" class="btn btn--secondary btn--sm">Browse Prompts</a>
+          <button class="btn btn--ghost btn--sm" onclick="window.TPG && window.TPG.signOut()">Sign Out</button>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container">
+
+      <!-- ── Stats ── -->
+      <div class="account-stats" id="accountStats">
+        <div class="account-stat">
+          <div class="account-stat__icon">❤️</div>
+          <div class="account-stat__num" id="statLiked">—</div>
+          <div class="account-stat__label">Liked Prompts</div>
+        </div>
+        <div class="account-stat">
+          <div class="account-stat__icon">📋</div>
+          <div class="account-stat__num" id="statCopied">—</div>
+          <div class="account-stat__label">Prompts Copied</div>
+        </div>
+        <div class="account-stat">
+          <div class="account-stat__icon">📅</div>
+          <div class="account-stat__num" id="statDays">—</div>
+          <div class="account-stat__label">Days as Member</div>
+        </div>
+      </div>
+
+      <!-- ── Saved / Liked Prompts ── -->
+      <section class="account-section" id="savedSection">
+        <div class="account-section__header">
+          <div>
+            <h2 class="account-section__title">📌 Saved Prompts</h2>
+            <p class="account-section__sub">Prompts you've liked while browsing</p>
+          </div>
+          <a href="categories.html" class="btn btn--secondary btn--sm">Browse More</a>
+        </div>
+        <div id="savedGrid">
+          <!-- populated by JS -->
+          <div class="account-empty">
+            <div class="account-empty__icon">⏳</div>
+            <p class="account-empty__title">Loading…</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Profile Details ── -->
+      <section class="account-section">
+        <div class="account-section__header">
+          <div>
+            <h2 class="account-section__title">👤 Profile Details</h2>
+            <p class="account-section__sub">Your account information</p>
+          </div>
+        </div>
+        <div style="
+          background:var(--bg-card);
+          border:1px solid var(--border-2);
+          border-radius:var(--r-xl);
+          overflow:hidden;
+        ">
+          <div id="profileRows">
+            <!-- rows inserted by JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Danger Zone ── -->
+      <section class="account-section">
+        <div class="account-danger">
+          <h3 class="account-danger__title">⚠️ Danger Zone</h3>
+          <p>
+            Signing out will end your session. Your liked prompts are stored locally
+            and will still be visible the next time you sign in on this device.
+          </p>
+          <button class="btn btn--danger btn--sm" onclick="window.TPG && window.TPG.signOut()">
+            Sign Out of This Device
+          </button>
+        </div>
+      </section>
+
+    </div>
+  </div><!-- /.account-page -->
+
+  <!-- ═══════════════════════════════════════════════════════
+       Firebase SDK
+  ══════════════════════════════════════════════════════════ -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+  <!-- Data scripts (for liked-prompt lookup) -->
+  <script src="../js/data/prompts.js"></script>
+  <script src="../js/data/marketplace-framework.js"></script>
+  <script src="../js/data/category-meta.js"></script>
+  <script src="../js/data/featured-prompts.js"></script>
+
+  <script src="../js/auth/firebase-config.js"></script>
+  <script src="../js/auth/auth.js"></script>
+  <script src="../js/auth/likes.js"></script>
+  <script src="../js/main.js"></script>
+
+  <script>
+    'use strict';
+
+    /* ── Helpers ────────────────────────────────────────────── */
+    function esc(s) {
+      return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+
+    function formatNum(n) {
+      n = parseInt(n, 10) || 0;
+      return n >= 1000 ? (n / 1000).toFixed(1).replace(/\.0$/, '') + 'K' : String(n);
+    }
+
+    function profileRow(label, value) {
+      return `
+        <div style="
+          display:flex;align-items:center;justify-content:space-between;
+          padding:14px 20px;border-bottom:1px solid var(--border-2);
+          font-size:0.875rem;
+        ">
+          <span style="color:var(--text-3);font-weight:500;">${label}</span>
+          <span style="color:var(--text-1);font-weight:600;">${value}</span>
+        </div>`;
+    }
+
+    /* ── Require auth ───────────────────────────────────────── */
+    if (window.TPG_AUTH) {
+      window.TPG_AUTH.onAuthStateChanged(function (user) {
+        if (!user) {
+          window.location.replace('signin.html');
+        } else {
+          renderAccount(user);
+        }
+      });
+    } else {
+      /* Firebase not configured — show demo mode */
+      renderAccount(null);
+    }
+
+    /* ── View-prompt modal ───────────────────────────────────── */
+    function openSavedModal(p) {
+      const meta   = window.CATEGORY_META || {};
+      const catId  = p.catId || '';
+      const mEntry = meta[catId] || {};
+      const rgb    = mEntry.rgb   || '124,58,237';
+      const color  = mEntry.color || '#7c3aed';
+      const emoji  = p.emoji || mEntry.emoji || '⚡';
+      const fullText = p.prompt || p.preview || '';
+
+      const overlay = document.createElement('div');
+      overlay.className = 'modal-overlay';
+      overlay.setAttribute('role', 'dialog');
+      overlay.setAttribute('aria-modal', 'true');
+      overlay.setAttribute('aria-label', p.title || 'Saved Prompt');
+
+      overlay.innerHTML = `
+        <div class="modal modal--accented">
+          <div class="modal__header">
+            <div>
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+                <span style="
+                  font-size:0.65rem;font-weight:800;letter-spacing:0.05em;
+                  background:rgba(${rgb},0.12);color:${color};
+                  border:1px solid rgba(${rgb},0.25);
+                  border-radius:var(--r-full);padding:2px 9px;">
+                  ${emoji} ${esc(p.catName || p.category || 'Prompt')}
+                </span>
+              </div>
+              <h2 style="font-size:1.05rem;color:var(--text-0);line-height:1.3;">${esc(p.title || 'Untitled Prompt')}</h2>
+            </div>
+            <button class="modal__close" id="savedModalClose" aria-label="Close">✕</button>
+          </div>
+          <div class="modal__body">
+            <p style="font-size:0.75rem;color:var(--text-3);margin-bottom:10px;">
+              Click the text to select all · Replace <strong>[BRACKETS]</strong> with your details
+            </p>
+            <div class="modal__prompt-text" id="savedModalText">${esc(fullText)}</div>
+          </div>
+          <div class="modal__footer">
+            <button class="btn btn--primary btn--lg" id="savedModalCopy" style="flex:1;">
+              📋 Copy Full Prompt
+            </button>
+            <button class="btn btn--ghost" id="savedModalClose2">Close</button>
+          </div>
+        </div>`;
+
+      document.body.appendChild(overlay);
+      document.body.style.overflow = 'hidden';
+
+      const textEl = overlay.querySelector('#savedModalText');
+      if (textEl) {
+        textEl.addEventListener('click', function () {
+          const range = document.createRange();
+          range.selectNodeContents(textEl);
+          const sel = window.getSelection();
+          sel.removeAllRanges();
+          sel.addRange(range);
+        });
+      }
+
+      overlay.querySelector('#savedModalCopy').addEventListener('click', function () {
+        navigator.clipboard.writeText(fullText).then(function () {
+          const btn = overlay.querySelector('#savedModalCopy');
+          btn.textContent = '✅ Copied!';
+          setTimeout(function () { btn.textContent = '📋 Copy Full Prompt'; }, 2000);
+          const c = parseInt(localStorage.getItem('tpg_copied_count') || '0', 10);
+          localStorage.setItem('tpg_copied_count', c + 1);
+          const el = document.getElementById('statCopied');
+          if (el) el.textContent = c + 1;
+        });
+      });
+
+      function closeModal() {
+        overlay.style.animation = 'fadeIn 0.15s ease reverse forwards';
+        setTimeout(function () { overlay.remove(); document.body.style.overflow = ''; }, 150);
+      }
+
+      overlay.querySelector('#savedModalClose').addEventListener('click', closeModal);
+      overlay.querySelector('#savedModalClose2').addEventListener('click', closeModal);
+      overlay.addEventListener('click', function (e) { if (e.target === overlay) closeModal(); });
+      document.addEventListener('keydown', function onKey(e) {
+        if (e.key === 'Escape') { closeModal(); document.removeEventListener('keydown', onKey); }
+      });
+    }
+
+    /* ── Render saved prompt card (compact) ─────────────────── */
+    function savedCardHtml(p) {
+      const meta   = window.CATEGORY_META || {};
+      const catId  = p.catId || '';
+      const mEntry = meta[catId] || {};
+      const rgb    = mEntry.rgb   || '124,58,237';
+      const color  = mEntry.color || '#7c3aed';
+      const emoji  = p.emoji || mEntry.emoji || '⚡';
+      const aiTools = (p.aiTool || 'ChatGPT').split(',').slice(0, 2).map(function (t) { return t.trim(); });
+      const preview = p.preview || (p.prompt || '').slice(0, 120);
+      const tags    = (p.tags || []).slice(0, 3);
+      const likes   = Math.floor(Math.random() * 400) + 50; // decorative count
+
+      return `
+        <article class="saved-card reveal" data-id="${esc(String(p.id))}">
+
+          <!-- Title row -->
+          <div class="saved-card__top">
+            <span class="saved-card__cat"
+                  style="background:rgba(${rgb},0.12);color:${color};border-color:rgba(${rgb},0.2);">
+              ${emoji}
+            </span>
+            <h3 class="saved-card__title">${esc(p.title || 'Untitled Prompt')}</h3>
+            <button class="saved-card__remove saved-unlike-btn"
+                    data-id="${esc(String(p.id))}"
+                    title="Remove from saved"
+                    aria-label="Remove this prompt from saved">✕</button>
+          </div>
+
+          <!-- Truncated prompt text -->
+          <p class="saved-card__preview">${esc(preview)}</p>
+
+          <!-- Tags row -->
+          <div class="saved-card__tags">
+            ${tags.map(function (t) { return `<span class="saved-tag">#${esc(t)}</span>`; }).join('')}
+          </div>
+
+          <!-- Meta row: AI bots + likes -->
+          <div class="saved-card__meta">
+            <div class="saved-card__ai">
+              ${aiTools.map(function (t) { return `<span class="saved-ai-badge">🤖 ${esc(t)}</span>`; }).join('')}
+            </div>
+            <span class="saved-card__likes">❤️ ${likes}</span>
+          </div>
+
+          <!-- Action row -->
+          <div class="saved-card__actions">
+            <button class="saved-card__btn saved-card__btn--view saved-view-btn"
+                    data-id="${esc(String(p.id))}">
+              👁 View
+            </button>
+            <button class="saved-card__btn saved-card__btn--copy saved-copy-btn"
+                    data-prompt="${esc(p.prompt || preview)}">
+              📋 Copy
+            </button>
+          </div>
+        </article>`;
+    }
+
+    /* ── Render saved prompts grid ──────────────────────────── */
+    function renderSavedGrid(savedPrompts) {
+      const savedGrid = document.getElementById('savedGrid');
+      if (!savedGrid) return;
+
+      if (!savedPrompts || savedPrompts.length === 0) {
+        savedGrid.innerHTML = `
+          <div class="account-empty">
+            <div class="account-empty__icon">🤍</div>
+            <p class="account-empty__title">No saved prompts yet</p>
+            <p>Tap the ❤️ on any prompt while browsing to save it here.</p>
+            <a href="categories.html" class="btn btn--secondary" style="margin-top:18px;display:inline-flex;">
+              Browse Prompts
+            </a>
+          </div>`;
+        return;
+      }
+
+      savedGrid.innerHTML = `
+        <div class="saved-cards-grid">
+          ${savedPrompts.map(savedCardHtml).join('')}
+        </div>`;
+
+      /* Stagger reveal */
+      requestAnimationFrame(function () {
+        savedGrid.querySelectorAll('.reveal').forEach(function (el, i) {
+          setTimeout(function () { el.classList.add('visible'); }, i * 45);
+        });
+      });
+
+      /* Build id→promptData lookup for the View modal */
+      const promptLookup = {};
+      savedPrompts.forEach(function (p) { promptLookup[String(p.id)] = p; });
+
+      /* View buttons */
+      savedGrid.querySelectorAll('.saved-view-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          const p = promptLookup[btn.dataset.id];
+          if (p) openSavedModal(p);
+        });
+      });
+
+      /* Copy buttons */
+      savedGrid.querySelectorAll('.saved-copy-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          const text = btn.dataset.prompt || '';
+          navigator.clipboard.writeText(text).then(function () {
+            const orig = btn.textContent;
+            btn.textContent = '✅ Copied!';
+            setTimeout(function () { btn.textContent = orig; }, 2000);
+            const c = parseInt(localStorage.getItem('tpg_copied_count') || '0', 10);
+            localStorage.setItem('tpg_copied_count', c + 1);
+            const el = document.getElementById('statCopied');
+            if (el) el.textContent = c + 1;
+          });
+        });
+      });
+
+      /* Remove buttons */
+      savedGrid.querySelectorAll('.saved-unlike-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          const id = btn.dataset.id;
+          if (window.TPG && window.TPG.likes) {
+            window.TPG.likes.unlike(id);
+          }
+          const card = btn.closest('.saved-card');
+          if (card) {
+            card.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
+            card.style.opacity = '0';
+            card.style.transform = 'scale(0.93)';
+            setTimeout(function () {
+              card.remove();
+              const tplLikes = window.TPG && window.TPG.likes;
+              const statEl = document.getElementById('statLiked');
+              if (statEl && tplLikes) statEl.textContent = tplLikes.getAll().length;
+              const grid = document.getElementById('savedGrid');
+              const remaining = grid && grid.querySelectorAll('.saved-card');
+              if (!remaining || remaining.length === 0) renderSavedGrid([]);
+            }, 220);
+          }
+        });
+      });
+    }
+
+    /* ── Main render ────────────────────────────────────────── */
+    function renderAccount(user) {
+
+      /* ── Avatar ── */
+      const heroAvatar = document.getElementById('heroAvatar');
+      const initials   = user
+        ? (user.displayName || user.email || 'U').trim().split(/\s+/).map(function (n) { return n[0]; }).join('').slice(0, 2).toUpperCase()
+        : 'PG';
+
+      heroAvatar.innerHTML = (user && user.photoURL)
+        ? `<img src="${user.photoURL}" class="account-avatar-lg" alt="Your avatar" referrerpolicy="no-referrer">`
+        : `<div class="account-avatar-lg account-avatar-lg--initials">${initials}</div>`;
+
+      /* ── Name / email ── */
+      document.getElementById('heroName').textContent  = user
+        ? (user.displayName || 'Prompt Engineer')
+        : 'Prompt Engineer (Demo)';
+      document.getElementById('heroEmail').textContent = user ? user.email : 'Sign in to sync your data';
+
+      /* ── Provider badge ── */
+      if (user) {
+        const providerBadge = document.getElementById('heroBadgeProvider');
+        const providerId = (user.providerData[0] || {}).providerId || '';
+        if (providerId === 'google.com') {
+          providerBadge.textContent = '🔵 Google account';
+          providerBadge.style.display = '';
+        } else if (providerId === 'password') {
+          providerBadge.textContent = '📧 Email account';
+          providerBadge.style.display = '';
+        }
+      }
+
+      /* ── Stats ── */
+      const tplLikes = window.TPG && window.TPG.likes;
+      const saved    = tplLikes ? tplLikes.getAll() : [];
+      const copied   = parseInt(localStorage.getItem('tpg_copied_count') || '0', 10);
+
+      document.getElementById('statLiked').textContent  = saved.length;
+      document.getElementById('statCopied').textContent = copied;
+
+      if (user && user.metadata && user.metadata.creationTime) {
+        const days = Math.max(1, Math.floor(
+          (Date.now() - new Date(user.metadata.creationTime)) / 86400000
+        ));
+        document.getElementById('statDays').textContent = days;
+      } else {
+        document.getElementById('statDays').textContent = '1';
+      }
+
+      /* ── Profile rows ── */
+      const memberSince = user && user.metadata && user.metadata.creationTime
+        ? new Date(user.metadata.creationTime).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+        : 'N/A';
+
+      document.getElementById('profileRows').innerHTML =
+        profileRow('Display name', user ? esc(user.displayName || '—') : '—') +
+        profileRow('Email address', user ? esc(user.email) : '—') +
+        profileRow('Member since',  memberSince) +
+        profileRow('Sign-in method', user
+          ? ((user.providerData[0] || {}).providerId === 'google.com' ? 'Google' : 'Email & Password')
+          : '—') +
+        `<div style="padding:14px 20px;font-size:0.8rem;color:var(--text-4);">
+           Profile editing coming soon.
+         </div>`;
+
+      /* ── Saved / Liked Prompts ── */
+      renderSavedGrid(saved);
+
+      /* ── Re-render when likes change (e.g. after Firebase sync) ── */
+      window.addEventListener('tpg:likes-synced', function () {
+        const freshSaved = tplLikes ? tplLikes.getAll() : [];
+        document.getElementById('statLiked').textContent = freshSaved.length;
+        renderSavedGrid(freshSaved);
+      });
+    }
+  </script>
+
+</body>
+</html>
+
+
