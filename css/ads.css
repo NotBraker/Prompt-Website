@@ -1,0 +1,67 @@
+.page-with-ads {
+  width: 100%;
+  max-width: 1640px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 160px minmax(0, 1fr) 160px;
+  gap: 24px;
+  align-items: start;
+}
+
+.page-main {
+  min-width: 0;
+}
+
+.ad-rail {
+  min-height: 100%;
+}
+
+.ad-slot-wrap {
+  position: sticky;
+  top: calc(var(--nav-height) + 20px);
+}
+
+.ad-label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.66rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--text-4);
+}
+
+.ad-slot {
+  width: 160px;
+  height: 600px;
+  border-radius: var(--r-md);
+  border: 1px solid var(--border-2);
+  background: var(--bg-card);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-3);
+  font-weight: 600;
+}
+
+body.premium .ad-rail {
+  display: none !important;
+}
+
+body.premium .page-with-ads {
+  grid-template-columns: 1fr;
+  max-width: var(--container-max);
+}
+
+@media (max-width: 1199px) {
+  .page-with-ads {
+    grid-template-columns: 1fr;
+    max-width: var(--container-max);
+    padding: 0;
+  }
+
+  .ad-rail {
+    display: none !important;
+  }
+}

@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="../css/main.css">
   <link rel="stylesheet" href="../css/categories.css">
   <link rel="stylesheet" href="../css/auth.css">
+  <link rel="stylesheet" href="../css/ads.css">
 </head>
 <body>
 
@@ -32,6 +33,7 @@
         <li><a href="../index.html">Home</a></li>
         <li><a href="categories.html">Prompts</a></li>
         <li><a href="community.html">Community</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
         <li><a href="about.html">About</a></li>
       </ul>
 
@@ -49,8 +51,19 @@
     <a href="../index.html" role="menuitem">🏠 Home</a>
     <a href="categories.html" role="menuitem">⚡ Prompts</a>
     <a href="community.html" role="menuitem">🤝 Community</a>
+    <a href="pricing.html" role="menuitem">💎 Pricing</a>
     <a href="about.html" role="menuitem">ℹ️ About</a>
   </div>
+
+  <div class="page-with-ads">
+    <aside class="ad-rail ad-rail--left" aria-label="Left advertisements">
+      <div class="ad-slot-wrap">
+        <span class="ad-label">Advertisement</span>
+        <div class="ad-slot">Ad</div>
+      </div>
+    </aside>
+
+    <div class="page-main">
 
   <!-- ═══════════════════════════════════════════════════════
        PAGE HEADER
@@ -184,6 +197,17 @@
   </footer>
 
   <!-- Firebase Auth SDK -->
+
+    </div>
+
+    <aside class="ad-rail ad-rail--right" aria-label="Right advertisements">
+      <div class="ad-slot-wrap">
+        <span class="ad-label">Advertisement</span>
+        <div class="ad-slot">Ad</div>
+      </div>
+    </aside>
+  </div>
+
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>

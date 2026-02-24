@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Choose the right Prompt Generation plan. Start free and upgrade to premium when you need advanced prompt features.">
+  <meta name="theme-color" content="#7C3AED">
+  <title>Pricing — The Prompt Generation</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+
+  <link rel="stylesheet" href="../css/animations.css">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/auth.css">
+  <link rel="stylesheet" href="../css/pricing.css">
+</head>
+<body>
+
+  <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="navbar__inner">
+      <a href="../index.html" class="navbar__logo" aria-label="The Prompt Generation — Home">
+        <div class="navbar__logo-icon" aria-hidden="true">⚡</div>
+        <span class="navbar__logo-text">The <span class="accent">Prompt</span> Generation</span>
+      </a>
+
+      <ul class="navbar__nav" role="list">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="categories.html">Prompts</a></li>
+        <li><a href="community.html">Community</a></li>
+        <li><a href="pricing.html" class="active">Pricing</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+
+      <div class="navbar__actions">
+        <a href="signin.html" id="navSignInBtn" class="btn btn--secondary btn--sm">Sign In</a>
+        <a href="categories.html" class="btn btn--primary btn--sm">Browse Prompts →</a>
+        <button class="navbar__hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu" role="menu">
+    <a href="../index.html" role="menuitem">🏠 Home</a>
+    <a href="categories.html" role="menuitem">⚡ Prompts</a>
+    <a href="community.html" role="menuitem">🤝 Community</a>
+    <a href="pricing.html" role="menuitem">💎 Pricing</a>
+    <a href="about.html" role="menuitem">ℹ️ About</a>
+  </div>
+
+  <main class="pricing-page" aria-label="Pricing plans">
+    <div class="container">
+      <header class="pricing-header">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../index.html">Home</a>
+          <span class="breadcrumb__sep" aria-hidden="true">›</span>
+          <span class="breadcrumb__current">Pricing</span>
+        </nav>
+        <span class="section-label" style="margin-top:16px;display:inline-block;">💎 Plans &amp; Pricing</span>
+        <h1 class="display-md" style="margin-top:12px;">Choose Your <span class="text-gradient">Plan</span></h1>
+        <p class="pricing-subtitle">Start free, upgrade when you're ready. No credit card required.</p>
+
+        <div class="billing-toggle" aria-label="Billing period switch">
+          <span id="monthlyLabel" class="billing-label active">Monthly</span>
+          <button id="billingSwitch" class="switch" aria-label="Toggle yearly billing"></button>
+          <span id="yearlyLabel" class="billing-label">Yearly</span>
+          <span class="save-badge">Save 20%</span>
+        </div>
+      </header>
+
+      <section class="plan-grid" aria-label="Plan cards">
+        <article class="plan-card">
+          <h2 class="plan-name">Free</h2>
+          <div class="plan-price">$0 <span>/forever</span></div>
+          <p class="plan-sub">Perfect for exploring</p>
+          <a href="signin.html" class="btn btn--secondary">Get Started Free</a>
+        </article>
+
+        <article class="plan-card plan-card--premium">
+          <div class="popular-badge">MOST POPULAR</div>
+          <h2 class="plan-name">Premium</h2>
+          <div class="plan-price"><span id="premiumPrice">$1.49</span> <span id="premiumSuffix">/mo</span></div>
+          <p class="plan-sub">For serious prompt engineers</p>
+          <a href="signin.html" class="btn btn--primary">Upgrade to Premium</a>
+        </article>
+      </section>
+
+      <section aria-label="Feature comparison">
+        <h2 class="heading-lg" style="margin-bottom:14px;">Feature Comparison</h2>
+        <div class="compare-wrap">
+          <table class="compare-table">
+            <thead><tr><th>Feature</th><th>Premium</th><th>Free</th></tr></thead>
+            <tbody>
+              <tr><td>Access to All 23,750+ Prompts</td><td><span class="val-check">✅ Unlimited</span></td><td><span class="val-amber">✅ With Ads</span></td></tr>
+              <tr><td>Submit Your Own Prompts</td><td><span class="val-check">✅ Unlimited</span></td><td><span class="val-amber">✅ 3 per day</span></td></tr>
+              <tr><td>Remove All Ads</td><td><span class="val-check">✅</span></td><td><span class="val-x">❌</span></td></tr>
+              <tr><td>Save / Like Prompts</td><td><span class="val-check">✅ Unlimited</span></td><td><span class="val-check">✅</span></td></tr>
+              <tr><td>Copy Prompts to Clipboard</td><td><span class="val-check">✅</span></td><td><span class="val-check">✅</span></td></tr>
+              <tr><td>Priority Prompt Review</td><td><span class="val-check">✅ Reviewed in 24 hours</span></td><td><span class="val-x">❌ 3–5 business days</span></td></tr>
+              <tr><td>Early Access to New Prompts</td><td><span class="val-check">✅ 48hr early access</span></td><td><span class="val-x">❌</span></td></tr>
+              <tr><td>Premium Profile Badge</td><td><span class="val-check">✅ ⚡ Badge</span></td><td><span class="val-x">❌</span></td></tr>
+              <tr><td>Export Saved Prompts</td><td><span class="val-check">✅ CSV &amp; JSON export</span></td><td><span class="val-x">❌</span></td></tr>
+              <tr><td>Custom Prompt Collections</td><td><span class="val-check">✅ Unlimited folders</span></td><td><span class="val-x">❌</span></td></tr>
+              <tr><td>Advanced Search &amp; Filters</td><td><span class="val-check">✅ Full filters (AI tool, rating, date range)</span></td><td><span class="val-amber">✅ Basic keyword search</span></td></tr>
+              <tr><td>Private Prompt Vault</td><td><span class="val-check">✅ Store personal prompts</span></td><td><span class="val-x">❌</span></td></tr>
+              <tr><td>Support</td><td><span class="val-check">✅ Priority email support</span></td><td>Community forum only</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="faq" aria-label="Pricing FAQ">
+        <h2 class="heading-lg" style="margin-bottom:12px;">Frequently Asked Questions</h2>
+        <div class="faq-item open"><button class="faq-q">Can I cancel anytime?</button><div class="faq-a">Yes, cancel anytime, no questions asked.</div></div>
+        <div class="faq-item"><button class="faq-q">Is there a free trial for Premium?</button><div class="faq-a">Yes, 7-day free trial included.</div></div>
+        <div class="faq-item"><button class="faq-q">What payment methods do you accept?</button><div class="faq-a">Visa, Mastercard, PayPal, Apple Pay via Stripe.</div></div>
+        <div class="faq-item"><button class="faq-q">Do I need an account to browse free?</button><div class="faq-a">No, but saving prompts and submitting requires a free account.</div></div>
+        <div class="faq-item"><button class="faq-q">Can I switch plans later?</button><div class="faq-a">Yes, upgrade or downgrade at any time.</div></div>
+      </section>
+
+      <section class="pricing-cta" aria-label="Final call to action">
+        <div>
+          <h2 class="heading-lg">Still not sure? Start free and upgrade anytime.</h2>
+          <p>No risk, no commitment — just better prompts.</p>
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <a href="signin.html" class="btn btn--secondary">Get Started Free</a>
+          <a href="signin.html" class="btn btn--primary">Upgrade to Premium</a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a href="../index.html" class="navbar__logo">
+            <div class="navbar__logo-icon" aria-hidden="true">⚡</div>
+            <span class="navbar__logo-text">The <span class="accent">Prompt</span> Generation</span>
+          </a>
+          <p class="footer__brand-desc">The world's most comprehensive AI prompt library.</p>
+        </div>
+      </div>
+      <div class="footer__bottom"><span>© 2025 The Prompt Generation. All rights reserved.</span></div>
+    </div>
+  </footer>
+
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+  <script src="../js/auth/firebase-config.js"></script>
+  <script src="../js/auth/auth.js"></script>
+  <script src="../js/auth/likes.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/pages/pricing.js"></script>
+</body>
+</html>
