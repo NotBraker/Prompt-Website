@@ -114,6 +114,46 @@
     return toUrl('account.html');
   }
 
+
+  function normalizeEmail(email) {
+    return String(email || '').trim().toLowerCase();
+  }
+
+  function sanitizeForDocId(str) {
+    return String(str || '').replace(/[^a-z0-9._-]/g, '_');
+  }
+
+  function getAccountKey(user) {
+    if (!user) return null;
+    var email = normalizeEmail(user.email);
+    if (email) return 'email_' + sanitizeForDocId(email);
+    return user.uid ? String(user.uid) : null;
+  }
+
+  function setPremiumClass(enabled) {
+    if (!document || !document.body) return;
+    document.body.classList.toggle('premium', !!enabled);
+  }
+
+  function updatePremiumState(user) {
+    var db = window.TPG_DB;
+    var accountKey = getAccountKey(user);
+
+    if (!user || !db || !accountKey) {
+      setPremiumClass(false);
+      return;
+    }
+
+    db.collection('users').doc(accountKey).get()
+      .then(function (docSnap) {
+        var data = docSnap && docSnap.exists ? docSnap.data() : null;
+        setPremiumClass(!!(data && data.premium));
+      })
+      .catch(function () {
+        setPremiumClass(false);
+      });
+  }
+
   /* Pre-hide Sign In button immediately (before async state resolves)
      to prevent the "flash of signed-out" on page load. We check
      localStorage for any cached Firebase auth token as a fast hint. */
@@ -202,7 +242,10 @@
     .catch(function () { /* ignore if already set */ });
 
   /* Run on every auth state change (including page load) */
-  auth.onAuthStateChanged(patchNavbar);
+  auth.onAuthStateChanged(function (user) {
+    patchNavbar(user);
+    updatePremiumState(user);
+  });
 
 })();
 

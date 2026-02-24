@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/home.css">
   <link rel="stylesheet" href="css/auth.css">
+  <link rel="stylesheet" href="css/ads.css">
 </head>
 <body>
 
@@ -39,6 +40,7 @@
         <li><a href="index.html" class="active">Home</a></li>
         <li><a href="pages/categories.html">Prompts</a></li>
         <li><a href="pages/community.html">Community</a></li>
+        <li><a href="pages/pricing.html">Pricing</a></li>
         <li><a href="pages/about.html">About</a></li>
       </ul>
 
@@ -61,11 +63,21 @@
     <a href="index.html" role="menuitem">🏠 Home</a>
     <a href="pages/categories.html" role="menuitem">⚡ Prompts</a>
     <a href="pages/community.html" role="menuitem">🤝 Community</a>
+    <a href="pages/pricing.html" role="menuitem">💎 Pricing</a>
     <a href="pages/about.html" role="menuitem">ℹ️ About</a>
     <div style="height:1px;background:var(--border-2);margin:8px 0;"></div>
     <a href="pages/categories.html" class="btn btn--primary" role="menuitem" style="text-align:center;">Browse All Prompts →</a>
   </div>
 
+  <div class="page-with-ads">
+    <aside class="ad-rail ad-rail--left" aria-label="Left advertisements">
+      <div class="ad-slot-wrap">
+        <span class="ad-label">Advertisement</span>
+        <div class="ad-slot">Ad</div>
+      </div>
+    </aside>
+
+    <div class="page-main">
   <!-- ═══════════════════════════════════════════════════════
        HERO SECTION
   ══════════════════════════════════════════════════════════ -->
@@ -372,6 +384,16 @@
       </div>
     </div>
   </footer>
+
+    </div>
+
+    <aside class="ad-rail ad-rail--right" aria-label="Right advertisements">
+      <div class="ad-slot-wrap">
+        <span class="ad-label">Advertisement</span>
+        <div class="ad-slot">Ad</div>
+      </div>
+    </aside>
+  </div>
 
   <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
